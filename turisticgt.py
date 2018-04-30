@@ -22,7 +22,7 @@ menuPantallaInicio = "0"
 while menuPantallaInicio != "3":
 	menuPantallaInicio = input("""
 	Bienvenido a TuristicGT
-		MENU:
+		MENU PRINCIPAL:
 	1. Consulta
 	2. Ingreso Admin
 	3. Salir
@@ -33,7 +33,7 @@ while menuPantallaInicio != "3":
 		menuConsulta = "0"
 		while menuConsulta != "3":
 			menuConsulta = input("""
-		MENU:
+		MENU CONSULTA:
 	1. Departamentos
 	2. Recomendar
 	3. Regresar
@@ -42,21 +42,25 @@ while menuPantallaInicio != "3":
 				#Departamentos
 				menuCategorias = "0"
 				while menuCategorias != "3":
-					departamento = input("Ingrese un departamento: ")
+					departamento = input("\nIngrese un departamento: ")
 					menuCategorias = input("""
-		MENU:
+		MENU DEPARTAMENTO """+str(departamento.upper())+""":
 	1. Restaurantes
 	2. Entretenimiento
 	3. Regresar
 	Opcion: """)
 					if menuCategorias == "1":
 						#Restaurantes
-						#Buscar los restaurantes de ese departamento en la base de datos
-						pass
+						print("\nRESTAURANTES EN "+str(departamento.upper()+" (BD):"))
+						#Funcion mostrar los restaurantes del departamento en la bd
+						restauranteElecto = input("Ingrese el numero del restaurante de su eleccion: ")
+						print("\nSe han mostrado todos los lugares")
 					elif menuCategorias == "2":
 						#Entretenimiento
-						#Buscar los lugares de entretenimiento de ese departamento en la base de datos
-						pass
+						print("\nENTRETENIMIENTO EN "+str(departamento.upper()+" (BD):"))
+						#Funcion mostrar los lugares de entretenimiento del departamento en la bd
+						lugarElecto = input("Ingrese el numero  del lugar de su eleccion: ")
+						print("\nSe han mostrado todos los lugares")
 					elif menuCategorias == "3":
 						print("")
 					else:
@@ -91,17 +95,18 @@ while menuPantallaInicio != "3":
 				}
 
 				opcionesRecomendar = "0"
-				while (opcionesRecomendar != "1") or (opcionesRecomendar != "2"):
+				while (opcionesRecomendar != "1") and (opcionesRecomendar != "2"):
 						
 					opcionesRecomendar = input("""
-	1. Aceptar
+	1. Enviar
 	2. Cancelar
 	Opcion: """)
 
 					if opcionesRecomendar == "1":
-						coleccion.insert(lugar)
+						#coleccion.insert(lugar)
+						print("Enviado correctamente.")
 					elif opcionesRecomendar == "2":
-						print("Esta bien.")
+						print("El envio se cancelo.")
 					else:
 						print("Opcion invalida.")
 				
@@ -114,8 +119,6 @@ while menuPantallaInicio != "3":
 	elif menuPantallaInicio == "2":
 		#Ingreso Admin
 		print("\nError #404. Pagina en construccion, sentimos las molestias")
-
-
 
 	elif menuPantallaInicio == "3":
 		#Salir
