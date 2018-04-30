@@ -52,19 +52,70 @@ while menuPantallaInicio != "3":
 					if menuCategorias == "1":
 						#Restaurantes
 						print("\nRESTAURANTES EN "+str(departamento.upper()+" (BD):"))
+						print("1. Regresar")
 						#Funcion mostrar los restaurantes del departamento en la bd
-						restauranteElecto = input("Ingrese el numero del restaurante de su eleccion: ")
-						print("\nSe han mostrado todos los lugares")
+						print("""
+2. Hola
+3. Bla
+4. fdjfsn
+5. sfnds""")
+						lugarElecto = input("Ingrese el numero del restaurante de su eleccion: ")
 					elif menuCategorias == "2":
 						#Entretenimiento
 						print("\nENTRETENIMIENTO EN "+str(departamento.upper()+" (BD):"))
+						print("1. Regresar")
 						#Funcion mostrar los lugares de entretenimiento del departamento en la bd
-						lugarElecto = input("Ingrese el numero  del lugar de su eleccion: ")
-						print("\nSe han mostrado todos los lugares")
+						lugarElecto = input("Ingrese el nombre del lugar de su eleccion: ")
 					elif menuCategorias == "3":
 						print("")
 					else:
 						print("Opcion Invalida")
+
+
+
+					#AQUI TENGO PROBLEMA CON EL FLUJO
+
+
+
+					if lugarElecto == "1":
+						print("")
+					elif lugarElecto != "1":
+						#Se muestra la info del lugar electo
+						#Funcion de mostrar la info del lugar
+						print("\nINFORMACION DEL LUGAR "+str(lugarElecto.upper())+":")
+						menuComentarios = "0"
+						while (menuComentarios != "1") and (menuComentarios != "2"):
+							menuComentarios = input("""
+	1. Ingresar un comentario
+	2. Regresar
+	Opcion: """)
+							if menuComentarios == "1":
+								print("\nSU COMENTARIO:")
+								coment = input("Ingrese su comentario: ")
+								puntuacion = input("Ingrese la puntuacion del lugar (sobre 5): ")
+								comentario = {
+											'Comentario': coment,
+											'Puntuacion': puntuacion
+											}
+								opcionesComentario = "0"
+								while (opcionesComentario != "1") and (opcionesComentario != "2"):
+									opcionesComentario = input("""
+	1. Enviar
+	2. Cancelar
+	Opcion: """)
+									if opcionesComentario == "1":
+										#Insertar el comentario en la base de datos
+										print("Enviado correctamente")
+									elif opcionesComentario == "2":
+										print("El envio se cancelo correctamente")
+									else:
+										print("Opcion Invalida")
+
+							elif menuComentarios == "2":
+								print("")
+							else:
+								print("Opcion Invalida")
+
 			elif menuConsulta == "2":
 				#Recomendar
 				print("")
@@ -108,13 +159,13 @@ while menuPantallaInicio != "3":
 					elif opcionesRecomendar == "2":
 						print("El envio se cancelo.")
 					else:
-						print("Opcion invalida.")
+						print("Opcion Invalida.")
 				
 			elif menuConsulta == "3":
 				#Regresar al menu principal
 				print("")
 			else:
-				print("Opcion invalida")
+				print("Opcion Invalida")
 
 	elif menuPantallaInicio == "2":
 		#Ingreso Admin
