@@ -21,64 +21,66 @@ coleccionUsuarios = db.usuariosAdminTuristic
 
 
 #usuario = {
-#	'Nombre': "Admin", 
-#	'Apellido': "Admin", 
+#	'Nombre': "Admin N", 
+#	'Apellido': "Admin A", 
 #	'Usuario': "Admin", 
-#	'Contraseña': "admin"}
+#	'Contrasena': "admin123"}
 #coleccionUsuarios.insert(usuario)
 #usuario = {
-#	'Nombre': "Willi", 
-#	'Apellido': "Rosal", 
+#	'Nombre': "Master N", 
+#	'Apellido': "Master A", 
 #	'Usuario': "Master", 
-#	'Contraseña': "admin"}
+#	'Contrasena': "master123"}
 #coleccionUsuarios.insert(usuario)
 
 
 menuPantallaInicio = "0"
 #Ciclo principal
 while menuPantallaInicio != "3":
+	#Se llama funcion que imprime menu principal
 	print(moduloTuristicGT.menuInicio())
 	menuPantallaInicio = input("Opcion: ")
-
 #
-#	Consulta
+#	CONSULTA
 #
-
 	if menuPantallaInicio == "1":
 		#Consulta
 		menuConsulta = "0"
+		#Ciclo menu consulta
 		while menuConsulta != "3":
+			#Se llama funcion que imprime menu consulta
 			print(moduloTuristicGT.menuConsulta())
 			menuConsulta = input("Opcion: ")
 			if menuConsulta == "1":
 				#
-				#Departamentos
+				#DEPARTAMENTOS
 				#
 				menuCategorias = "0"
+				#Ciclo menu categorias
 				while menuCategorias != "3":
 					departamento = input("\nIngrese un departamento: ")
+					#Se llama funcion que imprime menu categorias
 					print(moduloTuristicGT.menuCategorias(departamento))
 					menuCategorias = input("Opcion: ")
 
 					if (menuCategorias == "1") or (menuCategorias == "2"):
 						#
-						#Seleccionar lugar
+						#SELECCIONAR LUGAR
 						#
 						if menuCategorias == "1":
-							#Restaurantes
+							#RESTAURANTES
 							print("\nRESTAURANTES EN "+str(departamento.upper()+" (BD):"))
 							print("1. Regresar")
 							#Funcion mostrar los restaurantes del departamento en la bd
 							lugarElecto = input("Ingrese el numero del restaurante de su eleccion: ")
 						else:
-							#Entretenimiento
+							#ENTRETENIMIENTO
 							print("\nENTRETENIMIENTO EN "+str(departamento.upper()+" (BD):"))
 							print("1. Regresar")
 							#Funcion mostrar los lugares de entretenimiento del departamento en la bd
 							lugarElecto = input("Ingrese el nombre del lugar de su eleccion: ")
-						
 						#
-						#Mostrar info del lugar
+						#MOSTRAR INFORMACION DEL LUGAR
 						#
 						if lugarElecto == "1":
 							#Regresar
@@ -88,6 +90,7 @@ while menuPantallaInicio != "3":
 							print("\nINFORMACION DEL LUGAR "+str(lugarElecto.upper())+":")
 							#Funcion de mostrar la info del lugar
 							menuComentarios = "0"
+							#Ciclo menu comentarios
 							while (menuComentarios != "1") and (menuComentarios != "2"):
 								menuComentarios = input("""
 	1. Ingresar un comentario
@@ -97,18 +100,20 @@ while menuPantallaInicio != "3":
 									print("\nSU COMENTARIO:")
 									coment = input("Ingrese su comentario: ")
 									puntuacion = input("Ingrese la puntuacion del lugar (sobre 5): ")
+									#Se crea diccionario comentario
 									comentario = {
 												'Comentario': coment,
 												'Puntuacion': puntuacion
 												}
 									opcionesComentario = "0"
+									#Ciclo opciones comentario
 									while (opcionesComentario != "1") and (opcionesComentario != "2"):
 										opcionesComentario = input("""
 	1. Enviar
 	2. Cancelar
 	Opcion: """)
 										if opcionesComentario == "1":
-											#Insertar el comentario en la base de datos
+											#Se inserta el comentario en la base de datos
 											print("Enviado correctamente")
 										elif opcionesComentario == "2":
 											print("El envio se cancelo correctamente")
@@ -129,7 +134,7 @@ while menuPantallaInicio != "3":
 
 			elif menuConsulta == "2":
 				#
-				#Recomendar
+				#RECOMENDAR
 				#
 				print("")
 				departamento = input("Ingrese un departamento: ")
@@ -142,7 +147,7 @@ while menuPantallaInicio != "3":
 				descripcion = input("Ingrese la descripcion del lugar: ")
 				comentario = input("Ingrese un comentario del lugar: ")
 				puntuacion = input("Ingrese la puntuacion del lugar (sobre 5): ")
-
+				#Se crea diccionario del lugar
 				lugar = {
 				'Departamento': departamento,
 				'Categoria': categoria,
@@ -159,14 +164,15 @@ while menuPantallaInicio != "3":
 				}
 
 				opcionesRecomendar = "0"
-				while (opcionesRecomendar != "1") and (opcionesRecomendar != "2"):
-						
+				#Ciclo opciones recomendar
+				while (opcionesRecomendar != "1") and (opcionesRecomendar != "2"):		
 					opcionesRecomendar = input("""
 	1. Enviar
 	2. Cancelar
 	Opcion: """)
 
 					if opcionesRecomendar == "1":
+						#Se inserta el lugar en la base de datos
 						#coleccionLugares.insert(lugar)
 						print("Enviado correctamente.")
 					elif opcionesRecomendar == "2":
@@ -179,16 +185,16 @@ while menuPantallaInicio != "3":
 				print("")
 			else:
 				print("Opcion Invalida")
-
 #
-#	Ingreso de Admin
+#INGRESO ADMIN
 #
 	elif menuPantallaInicio == "2":
-		#Ingreso Admin
+		#INGRESO ADMIN
 		usuario = input("\nIngrese su usuario: ")
 		contrasena = input("Ingrese su contrasena: ")
 		
 		menuIngreso = "0"
+		#Ciclo menu ingreso admin
 		while (menuIngreso != "1") and (menuIngreso != "2"):
 			menuIngreso = input("""
 	1. Entrar
@@ -196,10 +202,10 @@ while menuPantallaInicio != "3":
 	Opcion: """)
 
 			if menuIngreso == "1":
-				#Ingreso de admin
+				#Autenticacion de ingreso
 				autenticado = moduloTuristicGT.autenticarCuenta(coleccionUsuarios, usuario, contrasena)
 				if autenticado:
-					print("Bienvenido "+str(usuario))
+					print("\nBienvenido "+str(usuario))
 				else:
 					print("\nUsuario o Contrasena incorrectos.")
 

@@ -10,6 +10,7 @@
 import pymongo
 
 def menuInicio():
+	#Menu principal
 	return """
 Bienvenido a TuristicGT
 	MENU:
@@ -18,6 +19,7 @@ Bienvenido a TuristicGT
 3. Salir """
 
 def menuConsulta():
+	#Menu consulta
 	return """
 	MENU CONSULTA:
 1. Departamentos
@@ -25,6 +27,7 @@ def menuConsulta():
 3. Regresar """
 
 def menuCategorias(dep):
+	#Menu categorias
 	return """
 	MENU DEPARTAMENTO """+str(dep.upper())+""":
 1. Restaurantes
@@ -32,8 +35,12 @@ def menuCategorias(dep):
 3. Regresar """
 
 def autenticarCuenta(bdColeccion, user, password):
-	#ARREGLAR ESTO
-	if bdColeccion.find({"Usuario":str(user)}) and bdColeccion.find({"Contrasena":str(password)}):
-		return True
-	else:
-		return False
+	#Autenticacion de ingreso
+	objeto = bdColeccion.find({"Usuario":str(user)})
+	for i in objeto:
+		for j in i:
+			if j == "Contrasena":
+				if i[j] == password:
+					return True
+				else:
+					return False
