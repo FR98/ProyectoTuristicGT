@@ -28,6 +28,10 @@ while menuPantallaInicio != "3":
 	3. Salir
 	Opcion: """)
 
+#
+#	Consulta
+#
+
 	if menuPantallaInicio == "1":
 		#Consulta
 		menuConsulta = "0"
@@ -39,7 +43,9 @@ while menuPantallaInicio != "3":
 	3. Regresar
 	Opcion: """)
 			if menuConsulta == "1":
+				#
 				#Departamentos
+				#
 				menuCategorias = "0"
 				while menuCategorias != "3":
 					departamento = input("\nIngrese un departamento: ")
@@ -51,17 +57,14 @@ while menuPantallaInicio != "3":
 	Opcion: """)
 
 					if (menuCategorias == "1") or (menuCategorias == "2"):
+						#
 						#Seleccionar lugar
+						#
 						if menuCategorias == "1":
 							#Restaurantes
 							print("\nRESTAURANTES EN "+str(departamento.upper()+" (BD):"))
 							print("1. Regresar")
 							#Funcion mostrar los restaurantes del departamento en la bd
-							print("""
-2. Hola
-3. Bla
-4. fdjfsn
-5. sfnds""")
 							lugarElecto = input("Ingrese el numero del restaurante de su eleccion: ")
 						else:
 							#Entretenimiento
@@ -69,8 +72,10 @@ while menuPantallaInicio != "3":
 							print("1. Regresar")
 							#Funcion mostrar los lugares de entretenimiento del departamento en la bd
 							lugarElecto = input("Ingrese el nombre del lugar de su eleccion: ")
-					
+						
+						#
 						#Mostrar info del lugar
+						#
 						if lugarElecto == "1":
 							#Regresar
 							print("")
@@ -113,12 +118,15 @@ while menuPantallaInicio != "3":
 									print("Opcion Invalida")
 
 					elif menuCategorias == "3":
+						#Regresar
 						print("")
 					else:
 						print("Opcion Invalida")
 
 			elif menuConsulta == "2":
+				#
 				#Recomendar
+				#
 				print("")
 				departamento = input("Ingrese un departamento: ")
 				categoria = input("Es 1. Restaurante o 2. Entretenimiento: ")
@@ -168,10 +176,31 @@ while menuPantallaInicio != "3":
 			else:
 				print("Opcion Invalida")
 
+#
+#	Ingreso de Admin
+#
 	elif menuPantallaInicio == "2":
 		#Ingreso Admin
 		print("\nError #404. Pagina en construccion, sentimos las molestias")
+		usuario = input("Ingrese su usuario: ")
+		contraseña = input("Ingrese su contraseña: ")
 		
+		menuIngreso = "0"
+		while (menuIngreso != "1") and (menuIngreso != "2"):
+			menuIngreso = input("""
+	1. Entrar
+	2. Cancelar
+	Opcion: """)
+
+			if menuIngreso == "1":
+				#Ingreso de admin
+				#Funcion autenticar ingreso
+				print("Bienvenido"+str(usuario))
+			elif menuIngreso == "2":
+				print("")
+			else:
+				print("Opcion Invalida")
+
 
 	elif menuPantallaInicio == "3":
 		#Salir
