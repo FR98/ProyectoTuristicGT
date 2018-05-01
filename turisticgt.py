@@ -19,7 +19,6 @@ db = conexion["turisticgt"]
 coleccionLugares = db.lugares
 coleccionUsuarios = db.usuariosAdminTuristic
 
-
 #usuario = {
 #	'Nombre': "Admin N", 
 #	'Apellido': "Admin A", 
@@ -32,7 +31,6 @@ coleccionUsuarios = db.usuariosAdminTuristic
 #	'Usuario': "Master", 
 #	'Contrasena': "master123"}
 #coleccionUsuarios.insert(usuario)
-
 
 menuPantallaInicio = "0"
 #Ciclo principal
@@ -62,7 +60,6 @@ while menuPantallaInicio != "3":
 					#Se llama funcion que imprime menu categorias
 					print(moduloTuristicGT.menuCategorias(departamento))
 					menuCategorias = input("Opcion: ")
-
 					if (menuCategorias == "1") or (menuCategorias == "2"):
 						#
 						#SELECCIONAR LUGAR
@@ -92,10 +89,8 @@ while menuPantallaInicio != "3":
 							menuComentarios = "0"
 							#Ciclo menu comentarios
 							while (menuComentarios != "1") and (menuComentarios != "2"):
-								menuComentarios = input("""
-	1. Ingresar un comentario
-	2. Regresar
-	Opcion: """)
+								print(moduloTuristicGT.menuComentarios())
+								menuComentarios = input("Opcion: ")
 								if menuComentarios == "1":
 									print("\nSU COMENTARIO:")
 									coment = input("Ingrese su comentario: ")
@@ -108,10 +103,8 @@ while menuPantallaInicio != "3":
 									opcionesComentario = "0"
 									#Ciclo opciones comentario
 									while (opcionesComentario != "1") and (opcionesComentario != "2"):
-										opcionesComentario = input("""
-	1. Enviar
-	2. Cancelar
-	Opcion: """)
+										print(moduloTuristicGT.opcionesComentario())
+										opcionesComentario = input("Opcion: ")
 										if opcionesComentario == "1":
 											#Se inserta el comentario en la base de datos
 											print("Enviado correctamente")
@@ -166,11 +159,8 @@ while menuPantallaInicio != "3":
 				opcionesRecomendar = "0"
 				#Ciclo opciones recomendar
 				while (opcionesRecomendar != "1") and (opcionesRecomendar != "2"):		
-					opcionesRecomendar = input("""
-	1. Enviar
-	2. Cancelar
-	Opcion: """)
-
+					print(moduloTuristicGT.opcionesRecomendar())
+					opcionesRecomendar = input("Opcion: ")
 					if opcionesRecomendar == "1":
 						#Se inserta el lugar en la base de datos
 						#coleccionLugares.insert(lugar)
@@ -192,20 +182,21 @@ while menuPantallaInicio != "3":
 		#INGRESO ADMIN
 		usuario = input("\nIngrese su usuario: ")
 		contrasena = input("Ingrese su contrasena: ")
-		
 		menuIngreso = "0"
 		#Ciclo menu ingreso admin
 		while (menuIngreso != "1") and (menuIngreso != "2"):
-			menuIngreso = input("""
-	1. Entrar
-	2. Cancelar
-	Opcion: """)
-
+			print(moduloTuristicGT.menuIngreso())
+			menuIngreso = input("Opcion: ")
+			
 			if menuIngreso == "1":
 				#Autenticacion de ingreso
 				autenticado = moduloTuristicGT.autenticarCuenta(coleccionUsuarios, usuario, contrasena)
 				if autenticado:
-					print("\nBienvenido "+str(usuario))
+					#Autenticacion valida
+					print("\nBIENVENIDO "+str(usuario.upper()))
+
+
+
 				else:
 					print("\nUsuario o Contrasena incorrectos.")
 
@@ -213,7 +204,6 @@ while menuPantallaInicio != "3":
 				print("")
 			else:
 				print("Opcion Invalida")
-
 
 	elif menuPantallaInicio == "3":
 		#Salir
