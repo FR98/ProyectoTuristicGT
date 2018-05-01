@@ -181,8 +181,7 @@ while menuPantallaInicio != "3":
 #
 	elif menuPantallaInicio == "2":
 		#Ingreso Admin
-		print("\nError #404. Pagina en construccion, sentimos las molestias")
-		usuario = input("Ingrese su usuario: ")
+		usuario = input("\nIngrese su usuario: ")
 		contraseña = input("Ingrese su contraseña: ")
 		
 		menuIngreso = "0"
@@ -194,8 +193,13 @@ while menuPantallaInicio != "3":
 
 			if menuIngreso == "1":
 				#Ingreso de admin
+				autenticado = False
 				#Funcion autenticar ingreso
-				print("Bienvenido"+str(usuario))
+				if autenticado:
+					print("Bienvenido"+str(usuario))
+				else:
+					print("\nUsuario o Contraseña incorrectos.")
+
 			elif menuIngreso == "2":
 				print("")
 			else:
