@@ -7,43 +7,33 @@
 #25/04/18
 #Modulo TuristicGT
 
-def esNumero (num):
-    try:
-        float(num)
-        return True
-    except:
-        return False
+import pymongo
 
-def opcionValida (x,a,b):
-    if x>a and x<b:
-        return True
-    else:
-        return False
+def menuInicio():
+	return """
+Bienvenido a TuristicGT
+	MENU:
+1. Consulta
+2. Ingreso Admin
+3. Salir """
 
-def menuInicio ():
-    return """
-    Bienvenido a TuristicGT
-	    MENU:
-	1. Consulta
-	2. Ingreso Admin
-	3. Salir """
+def menuConsulta():
+	return """
+	MENU CONSULTA:
+1. Departamentos
+2. Recomendar
+3. Regresar """
 
-def menuConsulta ():
-    return """
-            MENU:
-	1. Departamentos
-	2. Recomendar
-	3. Regresar """
+def menuCategorias(dep):
+	return """
+	MENU DEPARTAMENTO """+str(dep.upper())+""":
+1. Restaurantes
+2. Entretenimiento
+3. Regresar """
 
-def menuCategorias ():
-    return """
-            MENU:
-        1. Restaurantes
-	2. Entretenimiento
-	3. Regresar """
-
-def opcionesRecomendar ():
-    return """
-        1. Aceptar
-	2. Cancelar """
-
+def autenticarCuenta(bdColeccion, user, password):
+	#ARREGLAR ESTO
+	if bdColeccion.find({"Usuario":str(user)}) and bdColeccion.find({"Contrasena":str(password)}):
+		return True
+	else:
+		return False

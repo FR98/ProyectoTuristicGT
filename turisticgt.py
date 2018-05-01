@@ -7,26 +7,38 @@
 #25/04/18
 #Aplicacion TuristicGT
 
-#Se importa el modulo pymongo
+#Se importan modulos
 import pymongo
+import moduloTuristicGT
 
 #Se crea la conexion con el cliente de Mongo
 conexion = pymongo.MongoClient()
 #Se establece la base de datos ccon la que se trabaja
 db = conexion["turisticgt"]
-#Se establece la coleccion con la que se trabaja
-coleccion = db.lugares
+#Se establecen las colecciones con las que se trabajaran
+coleccionLugares = db.lugares
+coleccionUsuarios = db.usuariosAdminTuristic
+
+
+#usuario = {
+#	'Nombre': "Admin", 
+#	'Apellido': "Admin", 
+#	'Usuario': "Admin", 
+#	'Contraseña': "admin"}
+#coleccionUsuarios.insert(usuario)
+#usuario = {
+#	'Nombre': "Willi", 
+#	'Apellido': "Rosal", 
+#	'Usuario': "Master", 
+#	'Contraseña': "admin"}
+#coleccionUsuarios.insert(usuario)
+
 
 menuPantallaInicio = "0"
 #Ciclo principal
 while menuPantallaInicio != "3":
-	menuPantallaInicio = input("""
-	Bienvenido a TuristicGT
-		MENU PRINCIPAL:
-	1. Consulta
-	2. Ingreso Admin
-	3. Salir
-	Opcion: """)
+	print(moduloTuristicGT.menuInicio())
+	menuPantallaInicio = input("Opcion: ")
 
 #
 #	Consulta
@@ -36,12 +48,8 @@ while menuPantallaInicio != "3":
 		#Consulta
 		menuConsulta = "0"
 		while menuConsulta != "3":
-			menuConsulta = input("""
-		MENU CONSULTA:
-	1. Departamentos
-	2. Recomendar
-	3. Regresar
-	Opcion: """)
+			print(moduloTuristicGT.menuConsulta())
+			menuConsulta = input("Opcion: ")
 			if menuConsulta == "1":
 				#
 				#Departamentos
@@ -49,12 +57,8 @@ while menuPantallaInicio != "3":
 				menuCategorias = "0"
 				while menuCategorias != "3":
 					departamento = input("\nIngrese un departamento: ")
-					menuCategorias = input("""
-		MENU DEPARTAMENTO """+str(departamento.upper())+""":
-	1. Restaurantes
-	2. Entretenimiento
-	3. Regresar
-	Opcion: """)
+					print(moduloTuristicGT.menuCategorias(departamento))
+					menuCategorias = input("Opcion: ")
 
 					if (menuCategorias == "1") or (menuCategorias == "2"):
 						#
@@ -163,7 +167,7 @@ while menuPantallaInicio != "3":
 	Opcion: """)
 
 					if opcionesRecomendar == "1":
-						#coleccion.insert(lugar)
+						#coleccionLugares.insert(lugar)
 						print("Enviado correctamente.")
 					elif opcionesRecomendar == "2":
 						print("El envio se cancelo.")
@@ -182,7 +186,7 @@ while menuPantallaInicio != "3":
 	elif menuPantallaInicio == "2":
 		#Ingreso Admin
 		usuario = input("\nIngrese su usuario: ")
-		contraseña = input("Ingrese su contraseña: ")
+		contrasena = input("Ingrese su contrasena: ")
 		
 		menuIngreso = "0"
 		while (menuIngreso != "1") and (menuIngreso != "2"):
@@ -193,12 +197,11 @@ while menuPantallaInicio != "3":
 
 			if menuIngreso == "1":
 				#Ingreso de admin
-				autenticado = False
-				#Funcion autenticar ingreso
+				autenticado = moduloTuristicGT.autenticarCuenta(coleccionUsuarios, usuario, contrasena)
 				if autenticado:
-					print("Bienvenido"+str(usuario))
+					print("Bienvenido "+str(usuario))
 				else:
-					print("\nUsuario o Contraseña incorrectos.")
+					print("\nUsuario o Contrasena incorrectos.")
 
 			elif menuIngreso == "2":
 				print("")
