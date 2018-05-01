@@ -18,6 +18,7 @@ db = conexion["turisticgt"]
 #Se establecen las colecciones con las que se trabajaran
 coleccionLugares = db.lugares
 coleccionUsuarios = db.usuariosAdminTuristic
+coleccionRecomendaciones = db.recomendaciones
 
 #usuario = {
 #	'Nombre': "Admin N", 
@@ -89,6 +90,7 @@ while menuPantallaInicio != "3":
 							menuComentarios = "0"
 							#Ciclo menu comentarios
 							while (menuComentarios != "1") and (menuComentarios != "2"):
+								#Se llama funcion que imprime menu comentarios
 								print(moduloTuristicGT.menuComentarios())
 								menuComentarios = input("Opcion: ")
 								if menuComentarios == "1":
@@ -103,6 +105,7 @@ while menuPantallaInicio != "3":
 									opcionesComentario = "0"
 									#Ciclo opciones comentario
 									while (opcionesComentario != "1") and (opcionesComentario != "2"):
+										#Se llama funcion que imprime las opciones de comentario
 										print(moduloTuristicGT.opcionesComentario())
 										opcionesComentario = input("Opcion: ")
 										if opcionesComentario == "1":
@@ -140,30 +143,18 @@ while menuPantallaInicio != "3":
 				descripcion = input("Ingrese la descripcion del lugar: ")
 				comentario = input("Ingrese un comentario del lugar: ")
 				puntuacion = input("Ingrese la puntuacion del lugar (sobre 5): ")
-				#Se crea diccionario del lugar
-				lugar = {
-				'Departamento': departamento,
-				'Categoria': categoria,
-				'Nombre': nombre,
-				'Direccion': direccion,
-				'Telefono': telefono,
-				'Web': web,
-				'Horario': horario,
-				'Descripcion': descripcion,
-				'Comentarios':[{
-							'Comentario': comentario,
-							'Puntuacion': puntuacion
-							}]
-				}
+				#Se crea diccionario del lugar con funcion
+				lugar = moduloTuristicGT.crearDiccLugar(departamento, categoria, nombre, direccion, telefono, web, horario, descripcion, comentario, puntuacion)
 
 				opcionesRecomendar = "0"
 				#Ciclo opciones recomendar
-				while (opcionesRecomendar != "1") and (opcionesRecomendar != "2"):		
+				while (opcionesRecomendar != "1") and (opcionesRecomendar != "2"):
+					#Se llama funcion que imprime las opciones de recomendar
 					print(moduloTuristicGT.opcionesRecomendar())
 					opcionesRecomendar = input("Opcion: ")
 					if opcionesRecomendar == "1":
-						#Se inserta el lugar en la base de datos
-						#coleccionLugares.insert(lugar)
+						#Se inserta el lugar en la base de datos de recomendaciones
+						#coleccionRecomendaciones.insert(lugar)
 						print("Enviado correctamente.")
 					elif opcionesRecomendar == "2":
 						print("El envio se cancelo.")
@@ -185,17 +176,95 @@ while menuPantallaInicio != "3":
 		menuIngreso = "0"
 		#Ciclo menu ingreso admin
 		while (menuIngreso != "1") and (menuIngreso != "2"):
+			#Se llama funcion que imprime menu ingreso
 			print(moduloTuristicGT.menuIngreso())
 			menuIngreso = input("Opcion: ")
-			
+
 			if menuIngreso == "1":
 				#Autenticacion de ingreso
 				autenticado = moduloTuristicGT.autenticarCuenta(coleccionUsuarios, usuario, contrasena)
 				if autenticado:
-					#Autenticacion valida
-					print("\nBIENVENIDO "+str(usuario.upper()))
+					while autenticado:
+						#Autenticacion valida
+						print("\n\tBIENVENIDO "+str(usuario.upper()))
+						#Se llama funcion que imprime menu admin
+						print(moduloTuristicGT.menuAdmin())
+						menuAdmin = input("Opcion: ")
+						if menuAdmin == "1":
+							#
+							#DEPARTAMENTOS
+							#
+							print("Error #404. Pagina en construccion.")
+						elif menuAdmin == "2":
+							#
+							#INGRESAR UN NUEVO LUGAR
+							#
+							print("")
+							departamento = input("Ingrese un departamento: ")
+							categoria = input("Es 1. Restaurante o 2. Entretenimiento: ")
+							nombre = input("Ingrese el nombre del lugar: ")
+							direccion = input("Ingrese la direccion: ")
+							telefono = input("Ingrese el telefono del lugar: ")
+							web = input("Ingrese la pagina web: ")
+							horario = input("Ingrese el horario de servicio: ")
+							descripcion = input("Ingrese la descripcion del lugar: ")
+							comentario = ""
+							puntuacion = ""
+							#Se crea diccionario del lugar con funcion
+							lugar = moduloTuristicGT.crearDiccLugar(departamento, categoria, nombre, direccion, telefono, web, horario, descripcion, comentario, puntuacion)
 
+							opcionesIngresar = "0"
+							#Ciclo opciones ingresar
+							while (opcionesIngresar != "1") and (opcionesIngresar != "2"):
+								#Se llama funcion que imprime las opciones de ingresar
+								print(moduloTuristicGT.opcionesIngresar())
+								opcionesIngresar = input("Opcion: ")
+								if opcionesIngresar == "1":
+									#Se inserta el lugar en la base de datos
+									#coleccionLugares.insert(lugar)
+									print("Ingresado correctamente.")
+								elif opcionesIngresar == "2":
+									print("El ingreso se cancelo.")
+								else:
+									print("Opcion Invalida.")
 
+						elif menuAdmin == "3":
+							#
+							#VER RECOMENDACIONES
+							#
+							print("Error #404. Pagina en construccion.")
+						elif menuAdmin == "4":
+							#
+							#REGISTRAR UN NUEVO ADMIN
+							#
+							print("")
+							nombre = input("Ingrese el nombre: ")
+							apellido = input("Ingrese el apellido: ")
+							usuario = input("Inngrese el usuario: ")
+							contrasena = input("Ingrese la contrasena: ")
+							user = moduloTuristicGT.crearDiccUser(nombre, apellido, usuario, contrasena)
+
+							opcionesRegistrar = "0"
+							#Ciclo opciones registrar
+							while (opcionesRegistrar != "1") and (opcionesRegistrar != "2"):
+								#Se llama funcion que imprime las opciones de registrar
+								print(moduloTuristicGT.opcionesRegistrar())
+								opcionesRegistrar = input("Opcion: ")
+								if opcionesRegistrar == "1":
+									#Se inserta el usuario en la base de datos
+									#coleccionUsuarios.insert(user)
+									print("Registrado correctamente.")
+								elif opcionesRegistrar == "2":
+									print("El registro se cancelo.")
+								else:
+									print("Opcion Invalida.")
+
+						elif menuAdmin == "5":
+							#Logout
+							autenticado = False
+							print("\n\tHASTA LA PROXIMA "+str(usuario.upper()))
+						else:
+							print("Opcion Invalida")
 
 				else:
 					print("\nUsuario o Contrasena incorrectos.")
