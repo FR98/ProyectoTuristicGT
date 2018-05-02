@@ -70,7 +70,7 @@ while menuPantallaInicio != "3":
 							print("\nRESTAURANTES EN "+str(departamento.upper()+" (BD):"))
 							print("1. Regresar")
 							#Funcion mostrar los restaurantes del departamento en la bd
-							lugarElecto = input("Ingrese el numero del restaurante de su eleccion: ")
+							lugarElecto = input("Ingrese el nombre del restaurante de su eleccion: ")
 						else:
 							#ENTRETENIMIENTO
 							print("\nENTRETENIMIENTO EN "+str(departamento.upper()+" (BD):"))
