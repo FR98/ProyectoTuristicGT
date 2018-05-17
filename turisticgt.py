@@ -69,13 +69,13 @@ while menuPantallaInicio != "3":
 							#RESTAURANTES
 							print("\nRESTAURANTES EN "+str(departamento.upper()+" (BD):"))
 							print("1. Regresar")
-							#Funcion mostrar los restaurantes del departamento en la bd
+########################	#Funcion mostrar los restaurantes del departamento en la bd
 							lugarElecto = input("Ingrese el nombre del restaurante de su eleccion: ")
 						else:
 							#ENTRETENIMIENTO
 							print("\nENTRETENIMIENTO EN "+str(departamento.upper()+" (BD):"))
 							print("1. Regresar")
-							#Funcion mostrar los lugares de entretenimiento del departamento en la bd
+########################	#Funcion mostrar los lugares de entretenimiento del departamento en la bd
 							lugarElecto = input("Ingrese el nombre del lugar de su eleccion: ")
 						#
 						#MOSTRAR INFORMACION DEL LUGAR
@@ -86,7 +86,7 @@ while menuPantallaInicio != "3":
 						elif lugarElecto != "1":
 							#Se muestra la info del lugar electo
 							print("\nINFORMACION DEL LUGAR "+str(lugarElecto.upper())+":")
-							#Funcion de mostrar la info del lugar
+########################	#Funcion de mostrar la info del lugar
 							menuComentarios = "0"
 							#Ciclo menu comentarios
 							while (menuComentarios != "1") and (menuComentarios != "2"):
@@ -109,7 +109,7 @@ while menuPantallaInicio != "3":
 										print(moduloTuristicGT.opcionesComentario())
 										opcionesComentario = input("Opcion: ")
 										if opcionesComentario == "1":
-											#Se inserta el comentario en la base de datos
+########################					#Se inserta el comentario en la base de datos
 											print("Enviado correctamente")
 										elif opcionesComentario == "2":
 											print("El envio se cancelo correctamente")
@@ -154,7 +154,7 @@ while menuPantallaInicio != "3":
 					opcionesRecomendar = input("Opcion: ")
 					if opcionesRecomendar == "1":
 						#Se inserta el lugar en la base de datos de recomendaciones
-						#coleccionRecomendaciones.insert(lugar)
+####################	#coleccionRecomendaciones.insert(lugar)
 						print("Enviado correctamente.")
 					elif opcionesRecomendar == "2":
 						print("El envio se cancelo.")
@@ -221,7 +221,7 @@ while menuPantallaInicio != "3":
 								opcionesIngresar = input("Opcion: ")
 								if opcionesIngresar == "1":
 									#Se inserta el lugar en la base de datos
-									#coleccionLugares.insert(lugar)
+################################	#coleccionLugares.insert(lugar)
 									print("Ingresado correctamente.")
 								elif opcionesIngresar == "2":
 									print("El ingreso se cancelo.")
@@ -252,7 +252,7 @@ while menuPantallaInicio != "3":
 								opcionesRegistrar = input("Opcion: ")
 								if opcionesRegistrar == "1":
 									#Se inserta el usuario en la base de datos
-									#coleccionUsuarios.insert(user)
+################################	#coleccionUsuarios.insert(user)
 									print("Registrado correctamente.")
 								elif opcionesRegistrar == "2":
 									print("El registro se cancelo.")
