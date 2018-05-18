@@ -20,6 +20,15 @@ def autenticarCuenta(bdColeccion, user, password):
 				else:
 					return False
 
+def iniciarAdminDB():
+	usuario = {
+		'Nombre': "Admin N", 
+		'Apellido': "Admin A", 
+		'Usuario': "Admin", 
+		'Contrasena': "admin123"
+	}
+	return usuario
+
 def crearDiccLugar(departamento, categoria, nombre, direccion, telefono, web, horario, descripcion, comentario, puntuacion):
 	lugar = {
 		'Departamento': departamento,

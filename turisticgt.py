@@ -20,18 +20,24 @@ coleccionLugares = db.lugares
 coleccionUsuarios = db.usuariosAdminTuristic
 coleccionRecomendaciones = db.recomendaciones
 
-#usuario = {
-#	'Nombre': "Admin N", 
-#	'Apellido': "Admin A", 
-#	'Usuario': "Admin", 
-#	'Contrasena': "admin123"}
-#coleccionUsuarios.insert(usuario)
-#usuario = {
-#	'Nombre': "Master N", 
-#	'Apellido': "Master A", 
-#	'Usuario': "Master", 
-#	'Contrasena': "master123"}
-#coleccionUsuarios.insert(usuario)
+#Ciclo para agregar datos iniciales a base de datos
+preguntaDB = "nada"
+while (preguntaDB != "si") and (preguntaDB != "no"):
+	preguntaDB = input("Es primera vez que inicia este programa en su dispositivo? (si/no) ")
+	if preguntaDB == "si":
+		confirmar = input("Esta seguro que desea continuar? Cambiaran sus datos guardados (si/no) ")
+		if confirmar == "si":
+			usuario = iniciarAdminBD()
+			coleccionUsuarios.insert(usuario)
+########	#Aqui va la base de datos de los lugares
+		elif confirmar == "no":
+			print("Se cancelo la subida de datos")
+		else:
+			print("Opcion invalida")
+	elif preguntaDB == "no":
+		print("Se procedera con el programa como con regularidad")
+	else:
+		print("Opcion invalida")
 
 menuPantallaInicio = "0"
 #Ciclo principal
