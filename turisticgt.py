@@ -10,6 +10,7 @@
 #Se importan modulos
 import pymongo
 import moduloTuristicGT
+import moduloParaDB
 
 #Se crea la conexion con el cliente de Mongo
 conexion = pymongo.MongoClient()
@@ -25,11 +26,10 @@ preguntaDB = "nada"
 while (preguntaDB != "si") and (preguntaDB != "no"):
 	preguntaDB = input("Es primera vez que inicia este programa en su dispositivo? (si/no) ")
 	if preguntaDB == "si":
-		confirmar = input("Esta seguro que desea continuar? Cambiaran sus datos guardados (si/no) ")
+		confirmar = input("Esta seguro? Cambiaran sus datos guardados (si/no) ")
 		if confirmar == "si":
-			usuario = iniciarAdminBD()
-			coleccionUsuarios.insert(usuario)
-########	#Aqui va la base de datos de los lugares
+			moduloTuristicGT.iniciarAdminDB()
+			moduloParaDB.iniciarLugaresDB()
 		elif confirmar == "no":
 			print("Se cancelo la subida de datos")
 		else:
@@ -74,14 +74,18 @@ while menuPantallaInicio != "3":
 						if menuCategorias == "1":
 							#RESTAURANTES
 							print("\nRESTAURANTES EN "+str(departamento.upper()+" (BD):"))
-							print("1. Regresar")
-########################	#Funcion mostrar los restaurantes del departamento en la bd
+							print("Ingrese 1 para regresar")
+							#Funcion mostrar los restaurantes del departamento en la bd
+							categoria = "Restaurante"
+							print(moduloTuristicGT.verLugares(categoria, departamento))
 							lugarElecto = input("Ingrese el nombre del restaurante de su eleccion: ")
 						else:
 							#ENTRETENIMIENTO
 							print("\nENTRETENIMIENTO EN "+str(departamento.upper()+" (BD):"))
-							print("1. Regresar")
-########################	#Funcion mostrar los lugares de entretenimiento del departamento en la bd
+							print("Ingrese 1 para regresar")
+							#Funcion mostrar los lugares de entretenimiento del departamento en la bd
+							categoria = "Entretenimiento"
+							print(moduloTuristicGT.verLugares(categoria, departamento))
 							lugarElecto = input("Ingrese el nombre del lugar de su eleccion: ")
 						#
 						#MOSTRAR INFORMACION DEL LUGAR
@@ -92,7 +96,8 @@ while menuPantallaInicio != "3":
 						elif lugarElecto != "1":
 							#Se muestra la info del lugar electo
 							print("\nINFORMACION DEL LUGAR "+str(lugarElecto.upper())+":")
-########################	#Funcion de mostrar la info del lugar
+							#Funcion de mostrar la info del lugar
+							print(moduloTuristicGT.mostrarInfoLugar(lugarElecto))
 							menuComentarios = "0"
 							#Ciclo menu comentarios
 							while (menuComentarios != "1") and (menuComentarios != "2"):

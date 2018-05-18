@@ -8,10 +8,18 @@
 #Modulo TuristicGT
 
 import pymongo
+#Se crea la conexion con el cliente de Mongo
+conexion = pymongo.MongoClient()
+#Se establece la base de datos ccon la que se trabaja
+db = conexion["turisticgt"]
+#Se establecen las colecciones con las que se trabajaran
+coleccionLugares = db.lugares
+coleccionUsuarios = db.usuariosAdminTuristic
+
 
 def autenticarCuenta(bdColeccion, user, password):
 	#Autenticacion de ingreso
-	objeto = bdColeccion.find({"Usuario":str(user)})
+	objeto = bdColeccion.find({'Usuario':str(user)})
 	for i in objeto:
 		for j in i:
 			if j == "Contrasena":
@@ -27,7 +35,30 @@ def iniciarAdminDB():
 		'Usuario': "Admin", 
 		'Contrasena': "admin123"
 	}
-	return usuario
+	coleccionUsuarios.insert(usuario)
+	return ""
+
+def verLugares(categoria, departamento):
+	listaLugares = ""
+	for i in coleccionLugares.find({'Departamento':str(departamento)}):
+		if i['Categoria'] == categoria:
+			listaLugares += str(i['Nombre'])+"\n"
+	return listaLugares
+
+def mostrarInfoLugar(lugar):
+	info = ""
+	for i in coleccionLugares.find({'Nombre':str(lugar)}):
+		info += "\tNombre: "+str(i['Nombre'])+"\n"
+		info += "\tDescripcion: "+str(i['Descripcion'])+"\n"
+		info += "\tDireccion: "+str(i['Direccion'])+"\n"
+		info += "\tTelefono: "+str(i['Telefono'])+"\n"
+		info += "\tWeb: "+str(i['Web'])+"\n"
+		info += "\tHorario: "+str(i['Horario'])+"\n"
+		info += "\n\tCOMENTARIOS\n"
+		for j in i['Comentarios']:
+			info += "\nComentario: \n\t"+str(j['Comentario'])+"\n"
+			info += "Puntuacion: \n\t"+str(j['Puntuacion'])+"/5 estrellas"+"\n"
+	return info
 
 def crearDiccLugar(departamento, categoria, nombre, direccion, telefono, web, horario, descripcion, comentario, puntuacion):
 	lugar = {
