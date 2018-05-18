@@ -16,7 +16,6 @@ db = conexion["turisticgt"]
 coleccionLugares = db.lugares
 coleccionUsuarios = db.usuariosAdminTuristic
 
-
 def autenticarCuenta(bdColeccion, user, password):
 	#Autenticacion de ingreso
 	objeto = bdColeccion.find({'Usuario':str(user)})

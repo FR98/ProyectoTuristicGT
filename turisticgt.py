@@ -120,7 +120,11 @@ while menuPantallaInicio != "3":
 										print(moduloTuristicGT.opcionesComentario())
 										opcionesComentario = input("Opcion: ")
 										if opcionesComentario == "1":
-########################					#Se inserta el comentario en la base de datos
+											#Se inserta el comentario en la base de datos
+											for i in coleccionLugares.find({'Nombre':str(lugarElecto)}):
+												comentarios = i['Comentarios']
+												comentarios.append(comentario)
+												coleccionLugares.update_one({"Nombre":lugarElecto},{"$set":{"Comentarios": comentarios}})
 											print("Enviado correctamente")
 										elif opcionesComentario == "2":
 											print("El envio se cancelo correctamente")
@@ -165,7 +169,7 @@ while menuPantallaInicio != "3":
 					opcionesRecomendar = input("Opcion: ")
 					if opcionesRecomendar == "1":
 						#Se inserta el lugar en la base de datos de recomendaciones
-####################	#coleccionRecomendaciones.insert(lugar)
+						coleccionRecomendaciones.insert(lugar)
 						print("Enviado correctamente.")
 					elif opcionesRecomendar == "2":
 						print("El envio se cancelo.")
@@ -232,7 +236,7 @@ while menuPantallaInicio != "3":
 								opcionesIngresar = input("Opcion: ")
 								if opcionesIngresar == "1":
 									#Se inserta el lugar en la base de datos
-################################	#coleccionLugares.insert(lugar)
+									coleccionLugares.insert(lugar)
 									print("Ingresado correctamente.")
 								elif opcionesIngresar == "2":
 									print("El ingreso se cancelo.")
@@ -242,7 +246,7 @@ while menuPantallaInicio != "3":
 						elif menuAdmin == "3":
 							#
 							#VER RECOMENDACIONES
-							#
+########################	#
 							print("Error #404. Pagina en construccion.")
 						elif menuAdmin == "4":
 							#
@@ -263,7 +267,7 @@ while menuPantallaInicio != "3":
 								opcionesRegistrar = input("Opcion: ")
 								if opcionesRegistrar == "1":
 									#Se inserta el usuario en la base de datos
-################################	#coleccionUsuarios.insert(user)
+									coleccionUsuarios.insert(user)
 									print("Registrado correctamente.")
 								elif opcionesRegistrar == "2":
 									print("El registro se cancelo.")
