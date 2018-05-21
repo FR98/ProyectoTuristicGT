@@ -53,7 +53,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Solola",
-			'Categoria': "Recreativo",
+			'Categoria': "Entretenimiento",
 			'Nombre': "Mirador Rostro Maya",
 			'Direccion': "San Juan la laguna, Solola",
 			'Telefono': "",
@@ -68,7 +68,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Solola",
-			'Categoria': "Recreativo",
+			'Categoria': "Entretenimiento",
 			'Nombre': "Museo Lacustre",
 			'Direccion': "En las instalaciones del Hotel La osada de Don Rodrigo, final de la calle Santander",
 			'Telefono': 77622326,
@@ -117,7 +117,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Izabal",
-			'Categoria': "Recreacion",
+			'Categoria': "Entretenimiento",
 			'Nombre': "El boqueron",
 			'Direccion':" El estor, Izabal",
 			'Telefono': "",
@@ -132,7 +132,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Izabal",
-			'Categoria': "Recreacion",
+			'Categoria': "Entretenimiento",
 			'Nombre': "Casa Gandau",
 			'Direccion':" Rio Dulce, Izabal",
 			'Telefono': 55113280,
@@ -181,7 +181,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Jutiapa",
-			'Categoria': "Recreacion",
+			'Categoria': "Entretenimiento",
 			'Nombre': "Finca D'Rocks",
 			'Direccion':" Aldea Las Flores, El Progreso, Jutiapa",
 			'Telefono': 78234906,
@@ -196,7 +196,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Jutiapa",
-			'Categoria': "Recreacion",
+			'Categoria': "Entretenimiento",
 			'Nombre': "Eco Parque Mongoy",
 			'Direccion':" Kilometro 156 Jutiapa",
 			'Telefono': 53755410,
@@ -246,7 +246,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Suchitepequez",
-			'Categoria': "Recreacion",
+			'Categoria': "Entretenimiento",
 			'Nombre': "El Chorro del carmen",
 			'Direccion':" km164 desde la capital, Zunilito, suchitepequez 01018",
 			'Telefono': 42107370,
@@ -261,7 +261,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Suchitepequez",
-			'Categoria': "Recreacion",
+			'Categoria': "Entretenimiento",
 			'Nombre': "Parque Ecologico Cristiano La Merced",
 			'Direccion':" Jutiapa",
 			'Telefono': 57805821,
@@ -306,7 +306,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Zacapa",
-			'Categoria': "Recreacion",
+			'Categoria': "Entretenimiento",
 			'Nombre': "Valle Dorado",
 			'Direccion':"KM 149, carr Jacobo arbenz Guzman",
 			'Telefono': 42107370,
@@ -321,7 +321,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Zacapa",
-			'Categoria': "Recreacion",
+			'Categoria': "Entretenimiento",
 			'Nombre': "Museo de Paleontologia Estanzuela",
 			'Direccion':" 5 Avenida, Estanzuela",
 			'Telefono': 79336108,
@@ -371,7 +371,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Sacatepequez",
-			'Categoria': "Recreacion",
+			'Categoria': "Entretenimiento",
 			'Nombre': "Choco Museo",
 			'Direccion':"4a calle Oriente, Antigua Guatemala",
 			'Telefono': 78324520,
@@ -386,7 +386,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Sacatepequez",
-			'Categoria': "Recreacion",
+			'Categoria': "Entretenimiento",
 			'Nombre': "Casa Popenoe",
 			'Direccion':" 5a calle Oriente, Antigua Guatemala",
 			'Telefono': 23387959,
@@ -432,7 +432,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Peten",
-			'Categoria': "Recreacion",
+			'Categoria': "Entretenimiento",
 			'Nombre': "ZOO Petencito",
 			'Direccion':"carr. a San Miguel",
 			'Telefono': "",
@@ -447,7 +447,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Peten",
-			'Categoria': "Recreacion",
+			'Categoria': "Entretenimiento",
 			'Nombre': "Jorge's Rope Swing",
 			'Direccion':" Peten ",
 			'Telefono': 31963196,
@@ -493,7 +493,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Chiquimula",
-			'Categoria': "Recreacion",
+			'Categoria': "Entretenimiento",
 			'Nombre': "Parque Chatun",
 			'Direccion':"KM 226 carr a Honduras, Esquipulas 20007",
 			'Telefono': 78730909,
@@ -508,7 +508,7 @@ def iniciarLugaresDB():
 		},
 		{
 			'Departamento': "Chiquimula",
-			'Categoria': "Recreacion",
+			'Categoria': "Entretenimiento",
 			'Nombre': "Piedra de los compadres",
 			'Direccion':" RN-18 Esquipulas",
 			'Telefono': "",

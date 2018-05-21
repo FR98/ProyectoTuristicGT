@@ -149,7 +149,7 @@ while menuPantallaInicio != "3":
 				#
 				print("")
 				departamento = input("Ingrese un departamento: ")
-				categoria = input("Es 1. Restaurante o 2. Entretenimiento: ")
+				categoria = input("Ingrese Restaurante o Entretenimiento: ")
 				nombre = input("Ingrese el nombre del lugar: ")
 				direccion = input("Ingrese la direccion: ")
 				telefono = input("Ingrese el telefono del lugar: ")
@@ -216,7 +216,7 @@ while menuPantallaInicio != "3":
 							#
 							print("")
 							departamento = input("Ingrese un departamento: ")
-							categoria = input("Es 1. Restaurante o 2. Entretenimiento: ")
+							categoria = input("Ingrese Restaurante o Entretenimiento: ")
 							nombre = input("Ingrese el nombre del lugar: ")
 							direccion = input("Ingrese la direccion: ")
 							telefono = input("Ingrese el telefono del lugar: ")
