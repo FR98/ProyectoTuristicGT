@@ -209,7 +209,51 @@ while menuPantallaInicio != "3":
 							#
 							#DEPARTAMENTOS
 							#
-							print("Error #404. Pagina en construccion.")
+							menuCategorias = "0"
+							#Ciclo menu categorias
+							while menuCategorias != "3":
+								departamento = input("\nIngrese un departamento: ")
+								#Se llama funcion que imprime menu categorias
+								print(moduloTuristicGT.menuCategorias(departamento))
+								menuCategorias = input("Opcion: ")
+								if (menuCategorias == "1") or (menuCategorias == "2"):
+									#
+									#SELECCIONAR LUGAR
+									#
+									if menuCategorias == "1":
+										#RESTAURANTES
+										print("\nRESTAURANTES EN "+str(departamento.upper()+" (BD):"))
+										print("Ingrese 1 para regresar")
+										#Funcion mostrar los restaurantes del departamento en la bd
+										categoria = "Restaurante"
+										print(moduloTuristicGT.verLugares(categoria, departamento))
+										lugarElecto = input("Ingrese el nombre del restaurante de su eleccion: ")
+									else:
+										#ENTRETENIMIENTO
+										print("\nENTRETENIMIENTO EN "+str(departamento.upper()+" (BD):"))
+										print("Ingrese 1 para regresar")
+										#Funcion mostrar los lugares de entretenimiento del departamento en la bd
+										categoria = "Entretenimiento"
+										print(moduloTuristicGT.verLugares(categoria, departamento))
+										lugarElecto = input("Ingrese el nombre del lugar de su eleccion: ")
+									#
+									#MOSTRAR INFORMACION DEL LUGAR
+									#
+									if lugarElecto == "1":
+										#Regresar
+										print("")
+									elif lugarElecto != "1":
+										#Se muestra la info del lugar electo
+										print("\nINFORMACION DEL LUGAR "+str(lugarElecto.upper())+":")
+										#Funcion de mostrar la info del lugar
+										print(moduloTuristicGT.mostrarInfoLugar(lugarElecto))
+										
+								elif menuCategorias == "3":
+									#Regresar
+									print("")
+								else:
+									print("Opcion Invalida")
+
 						elif menuAdmin == "2":
 							#
 							#INGRESAR UN NUEVO LUGAR
@@ -247,6 +291,7 @@ while menuPantallaInicio != "3":
 							#
 							#VER RECOMENDACIONES
 ########################	#
+
 							print("Error #404. Pagina en construccion.")
 						elif menuAdmin == "4":
 							#
