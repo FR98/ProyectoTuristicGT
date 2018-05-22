@@ -66,6 +66,16 @@ def esDepartamento(dep):
 	else:
 		return False
 
+def siExiste(lugar):
+	listaLugares = []
+	for i in coleccionLugares.find():
+		listaLugares.append(i['Nombre'])
+
+	if lugar in listaLugares:
+		return True
+	else:
+		return False
+
 def crearDiccLugar(departamento, categoria, nombre, direccion, telefono, web, horario, descripcion, comentario, puntuacion):
 	lugar = {
 		'Departamento': departamento,

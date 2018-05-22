@@ -96,8 +96,8 @@ while menuPantallaInicio != "3":
 							if lugarElecto == "1":
 								#Regresar
 								print("")
-							elif lugarElecto != "1":
-################################################################################### REVISAR SI EL LUGAR EXISTE
+							#Se comprueba que el lugar exista
+							elif (lugarElecto != "1") and (moduloTuristicGT.siExiste(lugarElecto)):
 								#Se muestra la info del lugar electo
 								print("\nINFORMACION DEL LUGAR "+str(lugarElecto.upper())+":")
 								#Funcion de mostrar la info del lugar
@@ -111,44 +111,49 @@ while menuPantallaInicio != "3":
 									if menuComentarios == "1":
 										print("\nSU COMENTARIO:")
 										coment = input("Ingrese su comentario: ")
-										puntuacion = input("Ingrese la puntuacion del lugar (sobre 5): ")
-######################################## REVISAR FLUJO (SI VUELVE A PEDIR EL PUNTAJE)
-										try:
-											float(puntuacion)
-											puntuacion = float(puntuacion)
-											if (puntuacion >= 0) and (puntuacion < 6):
-												#Se crea diccionario comentario
-												comentario = {
-															'Comentario': coment,
-															'Puntuacion': puntuacion
-															}
-												opcionesComentario = "0"
-												#Ciclo opciones comentario
-												while (opcionesComentario != "1") and (opcionesComentario != "2"):
-													#Se llama funcion que imprime las opciones de comentario
-													print(moduloTuristicGT.opcionesComentario())
-													opcionesComentario = input("Opcion: ")
-													if opcionesComentario == "1":
-														#Se inserta el comentario en la base de datos
-														for i in coleccionLugares.find({'Nombre':str(lugarElecto)}):
-															comentarios = i['Comentarios']
-															comentarios.append(comentario)
-															coleccionLugares.update_one({"Nombre":lugarElecto},{"$set":{"Comentarios": comentarios}})
-														print("Enviado correctamente")
-													elif opcionesComentario == "2":
-														print("El envio se cancelo correctamente")
-													else:
-														print("Opcion Invalida")
-											else:
-												print("Califique de 0 a 5")
-										except:
-											print("Escriba un numero")
+										valido = "nada"
+										while valido != "si":
+											puntuacion = input("Ingrese la puntuacion del lugar (sobre 5): ")
+											try:
+												int(puntuacion)
+												puntuacion = int(puntuacion)
+												if (puntuacion >= 0) and (puntuacion < 6):
+													#Se crea diccionario comentario
+													comentario = {
+																'Comentario': coment,
+																'Puntuacion': puntuacion
+																}
+
+													opcionesComentario = "0"
+													#Ciclo opciones comentario
+													while (opcionesComentario != "1") and (opcionesComentario != "2"):
+														#Se llama funcion que imprime las opciones de comentario
+														print(moduloTuristicGT.opcionesComentario())
+														opcionesComentario = input("Opcion: ")
+														if opcionesComentario == "1":
+															#Se inserta el comentario en la base de datos
+															for i in coleccionLugares.find({'Nombre':str(lugarElecto)}):
+																comentarios = i['Comentarios']
+																comentarios.append(comentario)
+																coleccionLugares.update_one({"Nombre":lugarElecto},{"$set":{"Comentarios": comentarios}})
+															print("Enviado correctamente")
+														elif opcionesComentario == "2":
+															print("El envio se cancelo correctamente")
+														else:
+															print("Opcion Invalida")
+													valido = "si"
+												else:
+													print("Califique de 0 a 5")
+											except:
+												print("Escriba un numero")
 
 									elif menuComentarios == "2":
 										#Regresar
 										print("")
 									else:
 										print("Opcion Invalida")
+							else:
+								print("Ese lugar no esta registrado en la base de datos")
 										
 						elif menuCategorias == "3":
 							#Regresar
@@ -180,9 +185,10 @@ while menuPantallaInicio != "3":
 								descripcion = input("Ingrese la descripcion del lugar: ")
 								comentario = input("Ingrese un comentario del lugar: ")
 								puntuacion = input("Ingrese la puntuacion del lugar (sobre 5): ")
+######################################### REVISAR SI VUELVE A PREGUNTAR
 								try:
-									float(puntuacion)
-									puntuacion = float(puntuacion)
+									int(puntuacion)
+									puntuacion = int(puntuacion)
 									if (puntuacion >= 0) and (puntuacion < 6):
 										#Se crea diccionario del lugar con funcion
 										lugar = moduloTuristicGT.crearDiccLugar(departamento, categoria, nombre, direccion, telefono, web, horario, descripcion, comentario, puntuacion)
@@ -281,12 +287,13 @@ while menuPantallaInicio != "3":
 										if lugarElecto == "1":
 											#Regresar
 											print("")
-										elif lugarElecto != "1":
-################################################################################### REVISAR SI EL LUGAR EXISTE
+										elif (lugarElecto != "1") and (moduloTuristicGT.siExiste(lugarElecto)):
 											#Se muestra la info del lugar electo
 											print("\nINFORMACION DEL LUGAR "+str(lugarElecto.upper())+":")
 											#Funcion de mostrar la info del lugar
 											print(moduloTuristicGT.mostrarInfoLugar(lugarElecto))
+										else:
+											print("Ese lugar no esta registrado en la base de datos")
 													
 									elif menuCategorias == "3":
 										#Regresar
