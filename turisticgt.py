@@ -309,6 +309,67 @@ while menuPantallaInicio != "3":
 											print("\nINFORMACION DEL LUGAR "+str(lugarElecto.upper())+":")
 											#Funcion de mostrar la info del lugar
 											print(moduloTuristicGT.mostrarInfoLugar(lugarElecto))
+
+											opcionesLugar = input("Ingrese 1. Eliminar, 2. Modificar, 3. Continuar ")
+											if opcionesLugar == "1":
+												#Se elimina el lugar de la db
+												coleccionLugares.remove({'Nombre':str(lugarElecto)})
+											elif opcionesLugar == "2":
+												#Se muestra la info del lugar electo
+												print("\nINFORMACION DEL LUGAR "+str(lugarElecto.upper())+":")
+												#Funcion de mostrar la info del lugar
+												print(moduloTuristicGT.mostrarInfoLugar(lugarElecto))
+												modificar = input("Ingrese la configuracion que desea modificar: ")
+												
+												if (modificar == "Categoria") or (modificar == "categoria"):
+													categoria = input("Ingrese Restaurante o Entretenimiento: ")
+													noValido = True
+													while noValido:
+
+														if (categoria == "Restaurante") or (categoria == "Entretenimiento"):
+															noValido = False
+														else:
+															categoria = input("Ingrese Restaurante o Entretenimiento: ")
+													coleccionLugares.update_one({'Nombre':lugarElecto},{"$set":{'Categoria':categoria}})
+												elif (modificar == "Nombre") or (modificar == "nombre"):
+													nombre = input("Ingrese el nombre del lugar: ")
+													coleccionLugares.update_one({'Nombre':lugarElecto},{"$set":{'Nombre':nombre}})
+												elif (modificar == "Direccion") or (modificar == "direccion"):
+													direccion = input("Ingrese la direccion: ")
+													coleccionLugares.update_one({'Nombre':lugarElecto},{"$set":{'Direccion':direccion}})
+												elif (modificar == "Telefono") or (modificar == "telefono"):
+													telefono = input("Ingrese el telefono del lugar: ")
+													noValido = True
+													while noValido:
+														if len(telefono) == 8:
+															noValido = False
+															try:
+																int(telefono)
+																telefono = int(telefono)
+																noValido = False
+															except:
+																print("Escriba solo numeros")
+														else:
+															print("El telefono debe tener 8 digitos")
+															telefono = input("Ingrese el telefono del lugar: ")
+													coleccionLugares.update_one({'Nombre':lugarElecto},{"$set":{'Telefono':telefono}})
+												elif (modificar == "Web") or (modificar == "web"):
+													web = input("Ingrese la pagina web: ")
+													coleccionLugares.update_one({'Nombre':lugarElecto},{"$set":{'Web':web}})
+												elif (modificar == "Horario") or (modificar == "horario"):
+													horario = input("Ingrese el horario de servicio: ")
+													coleccionLugares.update_one({'Nombre':lugarElecto},{"$set":{'Horario':horario}})
+												elif (modificar == "Descripcion") or (modificar == "descripcion"):
+													descripcion = input("Ingrese la descripcion del lugar: ")
+													coleccionLugares.update_one({'Nombre':lugarElecto},{"$set":{'Descripcion':descripcion}})
+												else:
+													print("Opcion invalida")
+
+											elif opcionesLugar == "3":
+												print("")
+											else:
+												print("Opcion invalida")
+
 										else:
 											print("Ese lugar no esta registrado en la base de datos")
 													
