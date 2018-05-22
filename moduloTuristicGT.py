@@ -59,6 +59,13 @@ def mostrarInfoLugar(lugar):
 			info += "Puntuacion: \n\t"+str(j['Puntuacion'])+"/5 estrellas"+"\n"
 	return info
 
+def esDepartamento(dep):
+	departamentos = ["Alta Verapaz", "Baja Verapaz", "Chimaltenango", "Chiquimula", "Peten", "El Progreso", "Quiche", "Escuintla", "Guatemala", "Huehuetenango", "Izabal", "Jalapa", "Jutiapa", "Quetzaltenango", "Retalhuleu", "Sacatepequez", "San Marcos", "Santa Rosa", "Solola", "Suchitepequez", "Totonicapan", "Zacapa"]
+	if dep in departamentos:
+		return True
+	else:
+		return False
+
 def crearDiccLugar(departamento, categoria, nombre, direccion, telefono, web, horario, descripcion, comentario, puntuacion):
 	lugar = {
 		'Departamento': departamento,
