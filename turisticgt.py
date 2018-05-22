@@ -169,59 +169,73 @@ while menuPantallaInicio != "3":
 				#RECOMENDAR
 				#
 				print("")
-################### ARREGLAR DEFENSIVA AQUI
 				departamento = input("Ingrese un departamento: ")
-				if moduloTuristicGT.esDepartamento(departamento):
-					categoria = input("Ingrese Restaurante o Entretenimiento: ")
-					if (categoria == "Restaurante") or (categoria == "Entretenimiento"):
-						nombre = input("Ingrese el nombre del lugar: ")
-						direccion = input("Ingrese la direccion: ")
-						telefono = input("Ingrese el telefono del lugar: ")
-						if len(telefono) == 8:
-							try:
-								int(telefono) 
-								telefono = int(telefono)
-								web = input("Ingrese la pagina web: ")
-								horario = input("Ingrese el horario de servicio: ")
-								descripcion = input("Ingrese la descripcion del lugar: ")
-								comentario = input("Ingrese un comentario del lugar: ")
-								valido = "no"
-								while valido != "si":
-									puntuacion = input("Ingrese la puntuacion del lugar (sobre 5): ")
-									try:
-										int(puntuacion)
-										puntuacion = int(puntuacion)
-										if (puntuacion >= 0) and (puntuacion < 6):
-											#Se crea diccionario del lugar con funcion
-											lugar = moduloTuristicGT.crearDiccLugar(departamento, categoria, nombre, direccion, telefono, web, horario, descripcion, comentario, puntuacion)
-
-											opcionesRecomendar = "0"
-												#Ciclo opciones recomendar
-											while (opcionesRecomendar != "1") and (opcionesRecomendar != "2"):
-												#Se llama funcion que imprime las opciones de recomendar
-												print(moduloTuristicGT.opcionesRecomendar())
-												opcionesRecomendar = input("Opcion: ")
-												if opcionesRecomendar == "1":
-													#Se inserta el lugar en la base de datos de recomendaciones
-													coleccionRecomendaciones.insert(lugar)
-													print("Enviado correctamente.")
-												elif opcionesRecomendar == "2":
-													print("El envio se cancelo.")
-												else:
-													print("Opcion Invalida.")
-											valido = "si"
-										else:
-											print("Califique de 0 a 5")
-									except:
-										print("No es numero")
-							except:
-								print("Escriba solo numeros")
-						else:
-							print("El telefono debe tener 8 digitos")
+				noValido = True
+				while noValido:
+					if moduloTuristicGT.esDepartamento(departamento):
+						noValido = False
 					else:
-						print("Categoria invalida")
-				else:
-					print("Departamento invalido")
+						departamento = input("Ingrese un departamento valido: ")
+
+				categoria = input("Ingrese Restaurante o Entretenimiento: ")
+				noValido = True
+				while noValido:
+
+					if (categoria == "Restaurante") or (categoria == "Entretenimiento"):
+						noValido = False
+					else:
+						categoria = input("Ingrese Restaurante o Entretenimiento: ")
+
+				nombre = input("Ingrese el nombre del lugar: ")
+				direccion = input("Ingrese la direccion: ")
+				telefono = input("Ingrese el telefono del lugar: ")
+				noValido = True
+				while noValido:
+					if len(telefono) == 8:
+						noValido = False
+						try:
+							int(telefono)
+							telefono = int(telefono)
+							noValido = False
+						except:
+							print("Escriba solo numeros")
+					else:
+						print("El telefono debe tener 8 digitos")
+						telefono = input("Ingrese el telefono del lugar: ")
+						
+				web = input("Ingrese la pagina web: ")
+				horario = input("Ingrese el horario de servicio: ")
+				descripcion = input("Ingrese la descripcion del lugar: ")
+				comentario = input("Ingrese un comentario del lugar: ")
+				valido = "no"
+				while valido != "si":
+					puntuacion = input("Ingrese la puntuacion del lugar (sobre 5): ")
+					try:
+						int(puntuacion)
+						puntuacion = int(puntuacion)
+						if (puntuacion >= 0) and (puntuacion < 6):
+							#Se crea diccionario del lugar con funcion
+							lugar = moduloTuristicGT.crearDiccLugar(departamento, categoria, nombre, direccion, telefono, web, horario, descripcion, comentario, puntuacion)
+
+							opcionesRecomendar = "0"
+								#Ciclo opciones recomendar
+							while (opcionesRecomendar != "1") and (opcionesRecomendar != "2"):
+								#Se llama funcion que imprime las opciones de recomendar
+								print(moduloTuristicGT.opcionesRecomendar())
+								opcionesRecomendar = input("Opcion: ")
+								if opcionesRecomendar == "1":
+									#Se inserta el lugar en la base de datos de recomendaciones
+									coleccionRecomendaciones.insert(lugar)
+									print("Enviado correctamente.")
+								elif opcionesRecomendar == "2":
+									print("El envio se cancelo.")
+								else:
+									print("Opcion Invalida.")
+							valido = "si"
+						else:
+							print("Califique de 0 a 5")
+					except:
+						print("No es numero")
 				
 			elif menuConsulta == "3":
 				#Regresar al menu principal
