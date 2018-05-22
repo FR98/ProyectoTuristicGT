@@ -15,6 +15,7 @@ db = conexion["turisticgt"]
 #Se establecen las colecciones con las que se trabajaran
 coleccionLugares = db.lugares
 coleccionUsuarios = db.usuariosAdminTuristic
+coleccionRecomendaciones = db.recomendaciones
 
 def autenticarCuenta(bdColeccion, user, password):
 	#Autenticacion de ingreso
@@ -44,9 +45,30 @@ def verLugares(categoria, departamento):
 			listaLugares += str(i['Nombre'])+"\n"
 	return listaLugares
 
+def mostrarRecomendaciones():
+	listaLugares = ""
+	for i in coleccionRecomendaciones.find():
+		listaLugares += str(i['Nombre'])+"\n"
+	return listaLugares
+
 def mostrarInfoLugar(lugar):
 	info = ""
 	for i in coleccionLugares.find({'Nombre':str(lugar)}):
+		info += "\tNombre: "+str(i['Nombre'])+"\n"
+		info += "\tDescripcion: "+str(i['Descripcion'])+"\n"
+		info += "\tDireccion: "+str(i['Direccion'])+"\n"
+		info += "\tTelefono: "+str(i['Telefono'])+"\n"
+		info += "\tWeb: "+str(i['Web'])+"\n"
+		info += "\tHorario: "+str(i['Horario'])+"\n"
+		info += "\n\tCOMENTARIOS\n"
+		for j in i['Comentarios']:
+			info += "\nComentario: \n\t"+str(j['Comentario'])+"\n"
+			info += "Puntuacion: \n\t"+str(j['Puntuacion'])+"/5 estrellas"+"\n"
+	return info
+
+def mostrarInfoLugarRecomend(lugar):
+	info = ""
+	for i in coleccionRecomendaciones.find({'Nombre':str(lugar)}):
 		info += "\tNombre: "+str(i['Nombre'])+"\n"
 		info += "\tDescripcion: "+str(i['Descripcion'])+"\n"
 		info += "\tDireccion: "+str(i['Direccion'])+"\n"
@@ -69,6 +91,16 @@ def esDepartamento(dep):
 def siExiste(lugar):
 	listaLugares = []
 	for i in coleccionLugares.find():
+		listaLugares.append(i['Nombre'])
+
+	if lugar in listaLugares:
+		return True
+	else:
+		return False
+
+def siExisteRecomend(lugar):
+	listaLugares = []
+	for i in coleccionRecomendaciones.find():
 		listaLugares.append(i['Nombre'])
 
 	if lugar in listaLugares:

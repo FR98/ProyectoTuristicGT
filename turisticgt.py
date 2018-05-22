@@ -168,6 +168,7 @@ while menuPantallaInicio != "3":
 				#RECOMENDAR
 				#
 				print("")
+################### ARREGLAR DEFENSIVA AQUI
 				departamento = input("Ingrese un departamento: ")
 				if moduloTuristicGT.esDepartamento(departamento):
 					categoria = input("Ingrese Restaurante o Entretenimiento: ")
@@ -180,37 +181,39 @@ while menuPantallaInicio != "3":
 								int(telefono) 
 								telefono = int(telefono)
 								web = input("Ingrese la pagina web: ")
-########################################## AQUI VA LA DEFENSIVA DE WEBS
+########################################## AQUI VA LA DEFENSIVA PARA INGRESAR CORRECTAMENTE LA DIRECCION WEB
 								horario = input("Ingrese el horario de servicio: ")
 								descripcion = input("Ingrese la descripcion del lugar: ")
 								comentario = input("Ingrese un comentario del lugar: ")
-								puntuacion = input("Ingrese la puntuacion del lugar (sobre 5): ")
-######################################### REVISAR SI VUELVE A PREGUNTAR
-								try:
-									int(puntuacion)
-									puntuacion = int(puntuacion)
-									if (puntuacion >= 0) and (puntuacion < 6):
-										#Se crea diccionario del lugar con funcion
-										lugar = moduloTuristicGT.crearDiccLugar(departamento, categoria, nombre, direccion, telefono, web, horario, descripcion, comentario, puntuacion)
+								valido = "no"
+								while valido != "si":
+									puntuacion = input("Ingrese la puntuacion del lugar (sobre 5): ")
+									try:
+										int(puntuacion)
+										puntuacion = int(puntuacion)
+										if (puntuacion >= 0) and (puntuacion < 6):
+											#Se crea diccionario del lugar con funcion
+											lugar = moduloTuristicGT.crearDiccLugar(departamento, categoria, nombre, direccion, telefono, web, horario, descripcion, comentario, puntuacion)
 
-										opcionesRecomendar = "0"
-											#Ciclo opciones recomendar
-										while (opcionesRecomendar != "1") and (opcionesRecomendar != "2"):
-											#Se llama funcion que imprime las opciones de recomendar
-											print(moduloTuristicGT.opcionesRecomendar())
-											opcionesRecomendar = input("Opcion: ")
-											if opcionesRecomendar == "1":
-												#Se inserta el lugar en la base de datos de recomendaciones
-												coleccionRecomendaciones.insert(lugar)
-												print("Enviado correctamente.")
-											elif opcionesRecomendar == "2":
-												print("El envio se cancelo.")
-											else:
-												print("Opcion Invalida.")
-									else:
-										print("Califique de 0 a 5")
-								except:
-									print("No es numero")
+											opcionesRecomendar = "0"
+												#Ciclo opciones recomendar
+											while (opcionesRecomendar != "1") and (opcionesRecomendar != "2"):
+												#Se llama funcion que imprime las opciones de recomendar
+												print(moduloTuristicGT.opcionesRecomendar())
+												opcionesRecomendar = input("Opcion: ")
+												if opcionesRecomendar == "1":
+													#Se inserta el lugar en la base de datos de recomendaciones
+													coleccionRecomendaciones.insert(lugar)
+													print("Enviado correctamente.")
+												elif opcionesRecomendar == "2":
+													print("El envio se cancelo.")
+												else:
+													print("Opcion Invalida.")
+											valido = "si"
+										else:
+											print("Califique de 0 a 5")
+									except:
+										print("No es numero")
 							except:
 								print("Escriba solo numeros")
 						else:
@@ -315,6 +318,7 @@ while menuPantallaInicio != "3":
 							direccion = input("Ingrese la direccion: ")
 							telefono = input("Ingrese el telefono del lugar: ")
 							web = input("Ingrese la pagina web: ")
+########################################## AQUI VA LA DEFENSIVA PARA INGRESAR CORRECTAMENTE LA DIRECCION WEB
 							horario = input("Ingrese el horario de servicio: ")
 							descripcion = input("Ingrese la descripcion del lugar: ")
 							comentario = ""
@@ -340,9 +344,43 @@ while menuPantallaInicio != "3":
 						elif menuAdmin == "3":
 							#
 							#VER RECOMENDACIONES
-########################	#
+							#
+							#Se llama funcion que muestra los lugares recomendados
+							print(moduloTuristicGT.mostrarRecomendaciones())
+							selectRecomendacion = input("Ingrese 1 para regresar o ingrese el nombre del lugar recomendado que desea visualizar: ")
 
-							print("Error #404. Pagina en construccion.")
+							if selectRecomendacion == "1":
+								#Regresar
+								print("")
+							elif (selectRecomendacion != "1") and (moduloTuristicGT.siExisteRecomend(selectRecomendacion)):
+								#Se muestra la info del lugar electo
+								print("\nINFORMACION DEL LUGAR "+str(selectRecomendacion.upper())+":")
+								#Funcion de mostrar la info del lugar
+								print(moduloTuristicGT.mostrarInfoLugarRecomend(selectRecomendacion))
+
+								#Se pregunta si desea agregar a base de datos o borrar la recomendacion
+								guardar = "bla bla"
+								while (guardar != "si") and (guardar != "no"):
+									guardar = input("Desea agregar "+str(selectRecomendacion)+" a la base de datos? (si/no) ")
+
+									if guardar == "si":
+										#Se transporta el lugar seleccionado a la base de datos
+										pass
+									elif guardar == "no":
+										#Se elimina la sugerencia
+										eliminar = input("Desea eliminar? (si/no) ")
+										if eliminar == "si":
+											#Se elimino el lugar de la base de datos
+											coleccionRecomendaciones.remove({'Nombre':str(selectRecomendacion)})
+											print("La sugerencia se elimino satisfactoriamente")
+										else:
+											print("No se elimino el lugar recomendado.")
+									else:
+										print("Opcion invalida")
+
+							else:
+								print("Ese lugar no esta registrado en la base de datos")
+
 						elif menuAdmin == "4":
 							#
 							#REGISTRAR UN NUEVO ADMIN
