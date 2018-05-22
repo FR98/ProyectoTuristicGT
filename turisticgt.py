@@ -390,9 +390,11 @@ while menuPantallaInicio != "3":
 							print("")
 							nombre = input("Ingrese el nombre: ")
 							apellido = input("Ingrese el apellido: ")
-							usuario = input("Inngrese el usuario: ")
-############################while moduloTuristicGT.usuarioNuevoValido(usuario):
-############################	pass
+							usuario = input("Ingrese el usuario: ")
+							while not moduloTuristicGT.usuarioNuevoValido(usuario):
+								print("Ese usuario no esta disponible, ingrese uno nuevo.")
+								usuario = input("Ingrese el usuario: ")
+
 							contrasena = input("Ingrese la contrasena: ")
 							user = moduloTuristicGT.crearDiccUser(nombre, apellido, usuario, contrasena)
 

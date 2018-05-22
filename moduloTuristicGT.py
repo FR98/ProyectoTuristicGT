@@ -242,3 +242,9 @@ def opcionesIngresar():
 	return """
 	1. Ingresar
 	2. Cancelar"""
+
+def opcionesRegistrar():
+	#Opciones registrar
+	return """
+	1. Registrar
+	2. Cancelar"""
