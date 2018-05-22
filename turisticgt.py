@@ -31,6 +31,7 @@ while (preguntaDB != "si") and (preguntaDB != "no"):
 			confirmar = input("Esta seguro? Cambiaran sus datos guardados (si/no) ")
 			if confirmar == "si":
 				moduloTuristicGT.iniciarAdminDB()
+				moduloTuristicGT.iniciarRecomendacionesDB()
 				moduloParaDB.iniciarLugaresDB()
 			elif confirmar == "no":
 				print("Se cancelo la subida de datos")
@@ -181,7 +182,6 @@ while menuPantallaInicio != "3":
 								int(telefono) 
 								telefono = int(telefono)
 								web = input("Ingrese la pagina web: ")
-########################################## AQUI VA LA DEFENSIVA PARA INGRESAR CORRECTAMENTE LA DIRECCION WEB
 								horario = input("Ingrese el horario de servicio: ")
 								descripcion = input("Ingrese la descripcion del lugar: ")
 								comentario = input("Ingrese un comentario del lugar: ")
@@ -318,7 +318,6 @@ while menuPantallaInicio != "3":
 							direccion = input("Ingrese la direccion: ")
 							telefono = input("Ingrese el telefono del lugar: ")
 							web = input("Ingrese la pagina web: ")
-########################################## AQUI VA LA DEFENSIVA PARA INGRESAR CORRECTAMENTE LA DIRECCION WEB
 							horario = input("Ingrese el horario de servicio: ")
 							descripcion = input("Ingrese la descripcion del lugar: ")
 							comentario = ""
@@ -364,8 +363,11 @@ while menuPantallaInicio != "3":
 									guardar = input("Desea agregar "+str(selectRecomendacion)+" a la base de datos? (si/no) ")
 
 									if guardar == "si":
-										#Se transporta el lugar seleccionado a la base de datos
-										pass
+										#Se inserta en la base de datos principal
+										coleccionLugares.insert(coleccionRecomendaciones.find({'Nombre':str(selectRecomendacion)}))
+										#Se elimina de las recomendaciones
+										coleccionRecomendaciones.remove({'Nombre':str(selectRecomendacion)})
+										print("El lugar recomendado se transfirio correctamente a la base de datos")
 									elif guardar == "no":
 										#Se elimina la sugerencia
 										eliminar = input("Desea eliminar? (si/no) ")

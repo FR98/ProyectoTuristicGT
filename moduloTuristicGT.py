@@ -29,6 +29,7 @@ def autenticarCuenta(bdColeccion, user, password):
 					return False
 
 def iniciarAdminDB():
+	#Para db inicial
 	usuario = {
 		'Nombre': "Admin N", 
 		'Apellido': "Admin A", 
@@ -38,7 +39,28 @@ def iniciarAdminDB():
 	coleccionUsuarios.insert(usuario)
 	return ""
 
+def iniciarRecomendacionesDB():
+	#Para db inicial
+	lugar = {
+			'Departamento': "Guatemala",
+			'Categoria': "Restaurante",
+			'Nombre': "Pollo Pinulito",
+			'Direccion': "Zona 15",
+			'Telefono': 12345678,
+			'Web': "",
+			'Horario': "9:00 a.m. a 8:00 p.m.",
+			'Descripcion': "Ofrecen pollo en diferentes presentaciones.",
+			'Comentarios':[{
+				'Comentario': "Deliciosa comida",
+				'Puntuacion': 5
+				}
+			]
+	}
+	coleccionRecomendaciones.insert(lugar)
+	return ""
+
 def verLugares(categoria, departamento):
+	#Muestra los lugares de un departamento y de una categoria
 	listaLugares = ""
 	for i in coleccionLugares.find({'Departamento':str(departamento)}):
 		if i['Categoria'] == categoria:
@@ -46,12 +68,17 @@ def verLugares(categoria, departamento):
 	return listaLugares
 
 def mostrarRecomendaciones():
+	#Muestra los lugares de las recomendaciones
 	listaLugares = ""
 	for i in coleccionRecomendaciones.find():
 		listaLugares += str(i['Nombre'])+"\n"
-	return listaLugares
+	if listaLugares == "":
+		return "Sin recomendaciones"
+	else:
+		return listaLugares
 
 def mostrarInfoLugar(lugar):
+	#Muestra la info de un lugar
 	info = ""
 	for i in coleccionLugares.find({'Nombre':str(lugar)}):
 		info += "\tNombre: "+str(i['Nombre'])+"\n"
@@ -67,6 +94,7 @@ def mostrarInfoLugar(lugar):
 	return info
 
 def mostrarInfoLugarRecomend(lugar):
+	#Muestra la info de un lugar recomendado
 	info = ""
 	for i in coleccionRecomendaciones.find({'Nombre':str(lugar)}):
 		info += "\tNombre: "+str(i['Nombre'])+"\n"
@@ -82,6 +110,7 @@ def mostrarInfoLugarRecomend(lugar):
 	return info
 
 def esDepartamento(dep):
+	#Comprueba que el departamento ingresado sea de Guatemala y exista
 	departamentos = ["Alta Verapaz", "Baja Verapaz", "Chimaltenango", "Chiquimula", "Peten", "El Progreso", "Quiche", "Escuintla", "Guatemala", "Huehuetenango", "Izabal", "Jalapa", "Jutiapa", "Quetzaltenango", "Retalhuleu", "Sacatepequez", "San Marcos", "Santa Rosa", "Solola", "Suchitepequez", "Totonicapan", "Zacapa"]
 	if dep in departamentos:
 		return True
@@ -89,6 +118,7 @@ def esDepartamento(dep):
 		return False
 
 def siExiste(lugar):
+	#Comprueba la existencia de un lugar en la db
 	listaLugares = []
 	for i in coleccionLugares.find():
 		listaLugares.append(i['Nombre'])
@@ -99,6 +129,7 @@ def siExiste(lugar):
 		return False
 
 def siExisteRecomend(lugar):
+	#Comprueba la existencia de un lugar recomendado en la db
 	listaLugares = []
 	for i in coleccionRecomendaciones.find():
 		listaLugares.append(i['Nombre'])
@@ -109,6 +140,7 @@ def siExisteRecomend(lugar):
 		return False
 
 def crearDiccLugar(departamento, categoria, nombre, direccion, telefono, web, horario, descripcion, comentario, puntuacion):
+	#Crea un diccionario de la info de un lugar
 	lugar = {
 		'Departamento': departamento,
 		'Categoria': categoria,
@@ -126,6 +158,7 @@ def crearDiccLugar(departamento, categoria, nombre, direccion, telefono, web, ho
 	return lugar
 
 def crearDiccUser(nombre, apellido, usuario, contrasena):
+	#Crea diccionario de un usuario
 	user = {
 		'Nombre': nombre,
 		'Apellido': apellido,
