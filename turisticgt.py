@@ -387,11 +387,12 @@ while menuPantallaInicio != "3":
 							#
 							#REGISTRAR UN NUEVO ADMIN
 							#
-################################# AQUI FALTA DEFENSIVA (NO SE DEBEN REPETIR LOS USUARIOS)
 							print("")
 							nombre = input("Ingrese el nombre: ")
 							apellido = input("Ingrese el apellido: ")
 							usuario = input("Inngrese el usuario: ")
+############################while moduloTuristicGT.usuarioNuevoValido(usuario):
+############################	pass
 							contrasena = input("Ingrese la contrasena: ")
 							user = moduloTuristicGT.crearDiccUser(nombre, apellido, usuario, contrasena)
 

@@ -139,6 +139,17 @@ def siExisteRecomend(lugar):
 	else:
 		return False
 
+def usuarioNuevoValido(user):
+	#Comprueba que el usuario nuevo sea valido
+	listaUsuarios = []
+	for i in coleccionUsuarios.find():
+		listaUsuarios.append(i['Usuario'])
+
+	if user in listaUsuarios:
+		return False
+	else:
+		return True
+
 def crearDiccLugar(departamento, categoria, nombre, direccion, telefono, web, horario, descripcion, comentario, puntuacion):
 	#Crea un diccionario de la info de un lugar
 	lugar = {
