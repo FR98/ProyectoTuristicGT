@@ -324,13 +324,41 @@ while menuPantallaInicio != "3":
 							#
 							#INGRESAR UN NUEVO LUGAR
 							#
-################################################# AQUI FALTA DEFENSIVA
 							print("")
 							departamento = input("Ingrese un departamento: ")
+							noValido = True
+							while noValido:
+								if moduloTuristicGT.esDepartamento(departamento):
+									noValido = False
+								else:
+									departamento = input("Ingrese un departamento valido: ")
+
 							categoria = input("Ingrese Restaurante o Entretenimiento: ")
+							noValido = True
+							while noValido:
+
+								if (categoria == "Restaurante") or (categoria == "Entretenimiento"):
+									noValido = False
+								else:
+									categoria = input("Ingrese Restaurante o Entretenimiento: ")
+
 							nombre = input("Ingrese el nombre del lugar: ")
 							direccion = input("Ingrese la direccion: ")
 							telefono = input("Ingrese el telefono del lugar: ")
+							noValido = True
+							while noValido:
+								if len(telefono) == 8:
+									noValido = False
+									try:
+										int(telefono)
+										telefono = int(telefono)
+										noValido = False
+									except:
+										print("Escriba solo numeros")
+								else:
+									print("El telefono debe tener 8 digitos")
+									telefono = input("Ingrese el telefono del lugar: ")
+
 							web = input("Ingrese la pagina web: ")
 							horario = input("Ingrese el horario de servicio: ")
 							descripcion = input("Ingrese la descripcion del lugar: ")
